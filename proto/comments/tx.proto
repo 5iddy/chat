@@ -1,13 +1,49 @@
 syntax = "proto3";
 package chat.comments;
 
+import "comments/comment.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "chat/x/comments/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+    rpc CreateComment(MsgCreateComment) returns (MsgCreateCommentResponse);
+  rpc UpdateComment(MsgUpdateComment) returns (MsgUpdateCommentResponse);
+  rpc DeleteComment(MsgDeleteComment) returns (MsgDeleteCommentResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
 }
+
+message MsgCreateComment {
+  string creator = 1;
+  string content = 2;
+  string replyTo = 3;
+  int32 createdAt = 4;
+  string extention = 5;
+  string extensionType = 6;
+}
+
+message MsgCreateCommentResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateComment {
+  string creator = 1;
+  uint64 id = 2;
+  string content = 3;
+  string replyTo = 4;
+  int32 createdAt = 5;
+  string extention = 6;
+  string extensionType = 7;
+}
+
+message MsgUpdateCommentResponse {}
+
+message MsgDeleteComment {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteCommentResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package chat.comments;
+
+option go_package = "chat/x/comments/types";
+
+message Comment {
+  uint64 id = 1;
+  string content = 2; 
+  string replyTo = 3; 
+  int32 createdAt = 4; 
+  string extention = 5; 
+  string extensionType = 6; 
+  string creator = 7;
+}
