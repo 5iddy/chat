@@ -5,6 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "profile/params.proto";
+import "profile/profile.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "chat/x/profile/types";
@@ -15,7 +16,17 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/chat/profile/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a Profile by index.
+	rpc Profile(QueryGetProfileRequest) returns (QueryGetProfileResponse) {
+		option (google.api.http).get = "/chat/profile/profile/{name}";
+	}
+
+	// Queries a list of Profile items.
+	rpc ProfileAll(QueryAllProfileRequest) returns (QueryAllProfileResponse) {
+		option (google.api.http).get = "/chat/profile/profile";
+	}
+
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -25,6 +36,24 @@ message QueryParamsRequest {}
 message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetProfileRequest {
+	  string name = 1;
+
+}
+
+message QueryGetProfileResponse {
+	Profile profile = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProfileRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProfileResponse {
+	repeated Profile profile = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // this line is used by starport scaffolding # 3

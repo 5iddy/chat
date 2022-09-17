@@ -1,13 +1,43 @@
 syntax = "proto3";
 package chat.profile;
 
+import "profile/profile.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "chat/x/profile/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc CreateProfile(MsgCreateProfile) returns (MsgCreateProfileResponse);
+  rpc UpdateProfile(MsgUpdateProfile) returns (MsgUpdateProfileResponse);
+  rpc DeleteProfile(MsgDeleteProfile) returns (MsgDeleteProfileResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
 }
+
+message MsgCreateProfile {
+  string creator = 1;
+  string name = 2;
+
+  string bio = 3;
+  string website = 4;
+  repeated uint64 posts = 5;
+}
+message MsgCreateProfileResponse {}
+
+message MsgUpdateProfile {
+  string creator = 1;
+  string name = 2;
+
+  string bio = 3;
+  string website = 4;
+  repeated uint64 posts = 5;
+}
+message MsgUpdateProfileResponse {}
+
+message MsgDeleteProfile {
+  string creator = 1;
+  string name = 2;
+}
+message MsgDeleteProfileResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

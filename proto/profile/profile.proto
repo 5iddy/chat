@@ -1,0 +1,13 @@
+syntax = "proto3";
+package chat.profile;
+
+option go_package = "chat/x/profile/types";
+
+message Profile {
+  string name = 1; 
+  string bio = 2; 
+  string website = 3; 
+  repeated uint64 posts = 4; 
+  string creator = 5;
+}
+
