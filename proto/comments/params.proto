@@ -1,0 +1,12 @@
+syntax = "proto3";
+package chat.comments;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "chat/x/comments/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

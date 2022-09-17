@@ -1,0 +1,14 @@
+syntax = "proto3";
+package chat.comments;
+
+import "gogoproto/gogo.proto";
+import "comments/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "chat/x/comments/types";
+
+// GenesisState defines the comments module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

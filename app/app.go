@@ -103,6 +103,9 @@ import (
 	chatmodule "chat/x/chat"
 	chatmodulekeeper "chat/x/chat/keeper"
 	chatmoduletypes "chat/x/chat/types"
+	commentsmodule "chat/x/comments"
+	commentsmodulekeeper "chat/x/comments/keeper"
+	commentsmoduletypes "chat/x/comments/types"
 	profilemodule "chat/x/profile"
 	profilemodulekeeper "chat/x/profile/keeper"
 	profilemoduletypes "chat/x/profile/types"
@@ -162,6 +165,7 @@ var (
 		monitoringp.AppModuleBasic{},
 		chatmodule.AppModuleBasic{},
 		profilemodule.AppModuleBasic{},
+		commentsmodule.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
 
@@ -237,6 +241,8 @@ type App struct {
 	ChatKeeper chatmodulekeeper.Keeper
 
 	ProfileKeeper profilemodulekeeper.Keeper
+
+	CommentsKeeper commentsmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// mm is the module manager
@@ -275,6 +281,7 @@ func New(
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey, monitoringptypes.StoreKey,
 		chatmoduletypes.StoreKey,
 		profilemoduletypes.StoreKey,
+		commentsmoduletypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
@@ -412,6 +419,14 @@ func New(
 	)
 	profileModule := profilemodule.NewAppModule(appCodec, app.ProfileKeeper, app.AccountKeeper, app.BankKeeper)
 
+	app.CommentsKeeper = *commentsmodulekeeper.NewKeeper(
+		appCodec,
+		keys[commentsmoduletypes.StoreKey],
+		keys[commentsmoduletypes.MemStoreKey],
+		app.GetSubspace(commentsmoduletypes.ModuleName),
+	)
+	commentsModule := commentsmodule.NewAppModule(appCodec, app.CommentsKeeper, app.AccountKeeper, app.BankKeeper)
+
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 
 	// Create static IBC router, add transfer route, then set and seal it
@@ -455,6 +470,7 @@ func New(
 		monitoringModule,
 		chatModule,
 		profileModule,
+		commentsModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 
@@ -484,6 +500,7 @@ func New(
 		monitoringptypes.ModuleName,
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		commentsmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	)
 
@@ -509,6 +526,7 @@ func New(
 		monitoringptypes.ModuleName,
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		commentsmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	)
 
@@ -539,6 +557,7 @@ func New(
 		monitoringptypes.ModuleName,
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		commentsmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
 
@@ -565,6 +584,7 @@ func New(
 		monitoringModule,
 		chatModule,
 		profileModule,
+		commentsModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 	app.sm.RegisterStoreDecoders()
@@ -756,6 +776,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(monitoringptypes.ModuleName)
 	paramsKeeper.Subspace(chatmoduletypes.ModuleName)
 	paramsKeeper.Subspace(profilemoduletypes.ModuleName)
+	paramsKeeper.Subspace(commentsmoduletypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
