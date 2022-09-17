@@ -1,5 +1,6 @@
 // THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
 
+import ChatChatBlog from './chat/chat.blog'
 import ChatChatChat from './chat/chat.chat'
 import ChatChatComments from './chat/chat.comments'
 import ChatChatProfile from './chat/chat.profile'
@@ -26,6 +27,7 @@ import CosmosIbcGoIbcCorePortV1 from './cosmos/ibc-go/ibc.core.port.v1'
 
 
 export default { 
+  ChatChatBlog: load(ChatChatBlog, 'chat.blog'),
   ChatChatChat: load(ChatChatChat, 'chat.chat'),
   ChatChatComments: load(ChatChatComments, 'chat.comments'),
   ChatChatProfile: load(ChatChatProfile, 'chat.profile'),

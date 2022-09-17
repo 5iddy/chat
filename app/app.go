@@ -100,6 +100,9 @@ import (
 
 	"chat/docs"
 
+	blogmodule "chat/x/blog"
+	blogmodulekeeper "chat/x/blog/keeper"
+	blogmoduletypes "chat/x/blog/types"
 	chatmodule "chat/x/chat"
 	chatmodulekeeper "chat/x/chat/keeper"
 	chatmoduletypes "chat/x/chat/types"
@@ -166,6 +169,7 @@ var (
 		chatmodule.AppModuleBasic{},
 		profilemodule.AppModuleBasic{},
 		commentsmodule.AppModuleBasic{},
+		blogmodule.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
 
@@ -243,6 +247,8 @@ type App struct {
 	ProfileKeeper profilemodulekeeper.Keeper
 
 	CommentsKeeper commentsmodulekeeper.Keeper
+
+	BlogKeeper blogmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// mm is the module manager
@@ -282,6 +288,7 @@ func New(
 		chatmoduletypes.StoreKey,
 		profilemoduletypes.StoreKey,
 		commentsmoduletypes.StoreKey,
+		blogmoduletypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
@@ -427,6 +434,14 @@ func New(
 	)
 	commentsModule := commentsmodule.NewAppModule(appCodec, app.CommentsKeeper, app.AccountKeeper, app.BankKeeper)
 
+	app.BlogKeeper = *blogmodulekeeper.NewKeeper(
+		appCodec,
+		keys[blogmoduletypes.StoreKey],
+		keys[blogmoduletypes.MemStoreKey],
+		app.GetSubspace(blogmoduletypes.ModuleName),
+	)
+	blogModule := blogmodule.NewAppModule(appCodec, app.BlogKeeper, app.AccountKeeper, app.BankKeeper)
+
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 
 	// Create static IBC router, add transfer route, then set and seal it
@@ -471,6 +486,7 @@ func New(
 		chatModule,
 		profileModule,
 		commentsModule,
+		blogModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 
@@ -501,6 +517,7 @@ func New(
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
 		commentsmoduletypes.ModuleName,
+		blogmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	)
 
@@ -527,6 +544,7 @@ func New(
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
 		commentsmoduletypes.ModuleName,
+		blogmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	)
 
@@ -558,6 +576,7 @@ func New(
 		chatmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
 		commentsmoduletypes.ModuleName,
+		blogmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
 
@@ -585,6 +604,7 @@ func New(
 		chatModule,
 		profileModule,
 		commentsModule,
+		blogModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 	app.sm.RegisterStoreDecoders()
@@ -777,6 +797,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(chatmoduletypes.ModuleName)
 	paramsKeeper.Subspace(profilemoduletypes.ModuleName)
 	paramsKeeper.Subspace(commentsmoduletypes.ModuleName)
+	paramsKeeper.Subspace(blogmoduletypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
