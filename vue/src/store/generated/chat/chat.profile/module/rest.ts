@@ -11,6 +11,8 @@
 
 export type ProfileMsgAddBioToProfileResponse = object;
 
+export type ProfileMsgAddWebsiteToProfileResponse = object;
+
 export type ProfileMsgCreateProfileResponse = object;
 
 export type ProfileMsgDeleteProfileResponse = object;

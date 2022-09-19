@@ -12,6 +12,7 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgUpdateProfile{}, "profile/UpdateProfile", nil)
 	cdc.RegisterConcrete(&MsgDeleteProfile{}, "profile/DeleteProfile", nil)
 	cdc.RegisterConcrete(&MsgAddBioToProfile{}, "profile/AddBioToProfile", nil)
+	cdc.RegisterConcrete(&MsgAddWebsiteToProfile{}, "profile/AddWebsiteToProfile", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -23,6 +24,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgAddBioToProfile{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgAddWebsiteToProfile{},
 	)
 	// this line is used by starport scaffolding # 3
 

@@ -36,6 +36,14 @@ export interface MsgAddBioToProfile {
 
 export interface MsgAddBioToProfileResponse {}
 
+export interface MsgAddWebsiteToProfile {
+  creator: string;
+  name: string;
+  website: string;
+}
+
+export interface MsgAddWebsiteToProfileResponse {}
+
 const baseMsgCreateProfile: object = {
   creator: "",
   name: "",
@@ -630,15 +638,168 @@ export const MsgAddBioToProfileResponse = {
   },
 };
 
+const baseMsgAddWebsiteToProfile: object = {
+  creator: "",
+  name: "",
+  website: "",
+};
+
+export const MsgAddWebsiteToProfile = {
+  encode(
+    message: MsgAddWebsiteToProfile,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.website !== "") {
+      writer.uint32(26).string(message.website);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgAddWebsiteToProfile {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgAddWebsiteToProfile } as MsgAddWebsiteToProfile;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.name = reader.string();
+          break;
+        case 3:
+          message.website = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgAddWebsiteToProfile {
+    const message = { ...baseMsgAddWebsiteToProfile } as MsgAddWebsiteToProfile;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    if (object.website !== undefined && object.website !== null) {
+      message.website = String(object.website);
+    } else {
+      message.website = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgAddWebsiteToProfile): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.name !== undefined && (obj.name = message.name);
+    message.website !== undefined && (obj.website = message.website);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgAddWebsiteToProfile>
+  ): MsgAddWebsiteToProfile {
+    const message = { ...baseMsgAddWebsiteToProfile } as MsgAddWebsiteToProfile;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    if (object.website !== undefined && object.website !== null) {
+      message.website = object.website;
+    } else {
+      message.website = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgAddWebsiteToProfileResponse: object = {};
+
+export const MsgAddWebsiteToProfileResponse = {
+  encode(
+    _: MsgAddWebsiteToProfileResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgAddWebsiteToProfileResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgAddWebsiteToProfileResponse,
+    } as MsgAddWebsiteToProfileResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgAddWebsiteToProfileResponse {
+    const message = {
+      ...baseMsgAddWebsiteToProfileResponse,
+    } as MsgAddWebsiteToProfileResponse;
+    return message;
+  },
+
+  toJSON(_: MsgAddWebsiteToProfileResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgAddWebsiteToProfileResponse>
+  ): MsgAddWebsiteToProfileResponse {
+    const message = {
+      ...baseMsgAddWebsiteToProfileResponse,
+    } as MsgAddWebsiteToProfileResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateProfile(request: MsgCreateProfile): Promise<MsgCreateProfileResponse>;
   UpdateProfile(request: MsgUpdateProfile): Promise<MsgUpdateProfileResponse>;
   DeleteProfile(request: MsgDeleteProfile): Promise<MsgDeleteProfileResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   AddBioToProfile(
     request: MsgAddBioToProfile
   ): Promise<MsgAddBioToProfileResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  AddWebsiteToProfile(
+    request: MsgAddWebsiteToProfile
+  ): Promise<MsgAddWebsiteToProfileResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -681,6 +842,20 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgAddBioToProfileResponse.decode(new Reader(data))
+    );
+  }
+
+  AddWebsiteToProfile(
+    request: MsgAddWebsiteToProfile
+  ): Promise<MsgAddWebsiteToProfileResponse> {
+    const data = MsgAddWebsiteToProfile.encode(request).finish();
+    const promise = this.rpc.request(
+      "chat.profile.Msg",
+      "AddWebsiteToProfile",
+      data
+    );
+    return promise.then((data) =>
+      MsgAddWebsiteToProfileResponse.decode(new Reader(data))
     );
   }
 }

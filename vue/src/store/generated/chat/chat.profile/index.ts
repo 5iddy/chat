@@ -199,6 +199,36 @@ export default {
 		},
 		
 		
+		async sendMsgDeleteProfile({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteProfile(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteProfile:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgDeleteProfile:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgAddWebsiteToProfile({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgAddWebsiteToProfile(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgAddWebsiteToProfile:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgAddWebsiteToProfile:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
 		async sendMsgCreateProfile({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -229,21 +259,6 @@ export default {
 				}
 			}
 		},
-		async sendMsgDeleteProfile({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteProfile(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteProfile:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgDeleteProfile:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
 		async sendMsgAddBioToProfile({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -260,6 +275,32 @@ export default {
 			}
 		},
 		
+		async MsgDeleteProfile({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteProfile(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteProfile:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgDeleteProfile:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgAddWebsiteToProfile({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgAddWebsiteToProfile(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgAddWebsiteToProfile:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgAddWebsiteToProfile:Create Could not create message: ' + e.message)
+				}
+			}
+		},
 		async MsgCreateProfile({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -283,19 +324,6 @@ export default {
 					throw new Error('TxClient:MsgUpdateProfile:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgUpdateProfile:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgDeleteProfile({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteProfile(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteProfile:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgDeleteProfile:Create Could not create message: ' + e.message)
 				}
 			}
 		},

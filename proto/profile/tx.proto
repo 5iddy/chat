@@ -12,6 +12,7 @@ service Msg {
   rpc UpdateProfile(MsgUpdateProfile) returns (MsgUpdateProfileResponse);
   rpc DeleteProfile(MsgDeleteProfile) returns (MsgDeleteProfileResponse);
   rpc AddBioToProfile(MsgAddBioToProfile) returns (MsgAddBioToProfileResponse);
+  rpc AddWebsiteToProfile(MsgAddWebsiteToProfile) returns (MsgAddWebsiteToProfileResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -45,6 +46,15 @@ message MsgAddBioToProfile {
 }
 
 message MsgAddBioToProfileResponse {
+}
+
+message MsgAddWebsiteToProfile {
+  string creator = 1;
+  string name = 2;
+  string website = 3;
+}
+
+message MsgAddWebsiteToProfileResponse {
 }
 
 // this line is used by starport scaffolding # proto/tx/message

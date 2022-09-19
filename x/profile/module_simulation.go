@@ -40,6 +40,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgAddBioToProfile int = 100
 
+	opWeightMsgAddWebsiteToProfile = "op_weight_msg_add_website_to_profile"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgAddWebsiteToProfile int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -126,6 +130,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgAddBioToProfile,
 		profilesimulation.SimulateMsgAddBioToProfile(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgAddWebsiteToProfile int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgAddWebsiteToProfile, &weightMsgAddWebsiteToProfile, nil,
+		func(_ *rand.Rand) {
+			weightMsgAddWebsiteToProfile = defaultWeightMsgAddWebsiteToProfile
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgAddWebsiteToProfile,
+		profilesimulation.SimulateMsgAddWebsiteToProfile(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

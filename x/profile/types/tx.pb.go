@@ -420,6 +420,102 @@ func (m *MsgAddBioToProfileResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgAddBioToProfileResponse proto.InternalMessageInfo
 
+type MsgAddWebsiteToProfile struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Name    string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Website string `protobuf:"bytes,3,opt,name=website,proto3" json:"website,omitempty"`
+}
+
+func (m *MsgAddWebsiteToProfile) Reset()         { *m = MsgAddWebsiteToProfile{} }
+func (m *MsgAddWebsiteToProfile) String() string { return proto.CompactTextString(m) }
+func (*MsgAddWebsiteToProfile) ProtoMessage()    {}
+func (*MsgAddWebsiteToProfile) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a471fea62152592e, []int{8}
+}
+func (m *MsgAddWebsiteToProfile) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgAddWebsiteToProfile) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgAddWebsiteToProfile.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgAddWebsiteToProfile) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgAddWebsiteToProfile.Merge(m, src)
+}
+func (m *MsgAddWebsiteToProfile) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgAddWebsiteToProfile) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgAddWebsiteToProfile.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgAddWebsiteToProfile proto.InternalMessageInfo
+
+func (m *MsgAddWebsiteToProfile) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgAddWebsiteToProfile) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MsgAddWebsiteToProfile) GetWebsite() string {
+	if m != nil {
+		return m.Website
+	}
+	return ""
+}
+
+type MsgAddWebsiteToProfileResponse struct {
+}
+
+func (m *MsgAddWebsiteToProfileResponse) Reset()         { *m = MsgAddWebsiteToProfileResponse{} }
+func (m *MsgAddWebsiteToProfileResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgAddWebsiteToProfileResponse) ProtoMessage()    {}
+func (*MsgAddWebsiteToProfileResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a471fea62152592e, []int{9}
+}
+func (m *MsgAddWebsiteToProfileResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgAddWebsiteToProfileResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgAddWebsiteToProfileResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgAddWebsiteToProfileResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgAddWebsiteToProfileResponse.Merge(m, src)
+}
+func (m *MsgAddWebsiteToProfileResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgAddWebsiteToProfileResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgAddWebsiteToProfileResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgAddWebsiteToProfileResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgCreateProfile)(nil), "chat.profile.MsgCreateProfile")
 	proto.RegisterType((*MsgCreateProfileResponse)(nil), "chat.profile.MsgCreateProfileResponse")
@@ -429,33 +525,38 @@ func init() {
 	proto.RegisterType((*MsgDeleteProfileResponse)(nil), "chat.profile.MsgDeleteProfileResponse")
 	proto.RegisterType((*MsgAddBioToProfile)(nil), "chat.profile.MsgAddBioToProfile")
 	proto.RegisterType((*MsgAddBioToProfileResponse)(nil), "chat.profile.MsgAddBioToProfileResponse")
+	proto.RegisterType((*MsgAddWebsiteToProfile)(nil), "chat.profile.MsgAddWebsiteToProfile")
+	proto.RegisterType((*MsgAddWebsiteToProfileResponse)(nil), "chat.profile.MsgAddWebsiteToProfileResponse")
 }
 
 func init() { proto.RegisterFile("profile/tx.proto", fileDescriptor_a471fea62152592e) }
 
 var fileDescriptor_a471fea62152592e = []byte{
-	// 328 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x28, 0xca, 0x4f,
-	0xcb, 0xcc, 0x49, 0xd5, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x49, 0xce,
-	0x48, 0x2c, 0xd1, 0x83, 0x0a, 0x4b, 0x89, 0xa4, 0xe7, 0xa7, 0xe7, 0x83, 0x25, 0xf4, 0x41, 0x2c,
-	0x88, 0x1a, 0xa5, 0x1c, 0x2e, 0x01, 0xdf, 0xe2, 0x74, 0xe7, 0xa2, 0xd4, 0xc4, 0x92, 0xd4, 0x00,
-	0x88, 0x4a, 0x21, 0x09, 0x2e, 0xf6, 0x64, 0x90, 0x40, 0x7e, 0x91, 0x04, 0xa3, 0x02, 0xa3, 0x06,
-	0x67, 0x10, 0x8c, 0x2b, 0x24, 0xc4, 0xc5, 0x92, 0x97, 0x98, 0x9b, 0x2a, 0xc1, 0x04, 0x16, 0x06,
-	0xb3, 0x85, 0x04, 0xb8, 0x98, 0x93, 0x32, 0xf3, 0x25, 0x98, 0xc1, 0x42, 0x20, 0x26, 0x48, 0x7f,
-	0x79, 0x6a, 0x52, 0x71, 0x66, 0x49, 0xaa, 0x04, 0x0b, 0x44, 0x3f, 0x94, 0xab, 0x24, 0xc5, 0x25,
-	0x81, 0x6e, 0x5b, 0x50, 0x6a, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0x2a, 0xd4, 0x25, 0xa1, 0x05, 0x29,
-	0x74, 0x74, 0x09, 0x8a, 0x6d, 0x70, 0x97, 0x38, 0x80, 0x5d, 0xe2, 0x92, 0x9a, 0x93, 0x4a, 0xa6,
-	0x4b, 0xa0, 0xa6, 0xa3, 0x98, 0x00, 0x37, 0x3d, 0x84, 0x4b, 0xc8, 0xb7, 0x38, 0xdd, 0x31, 0x25,
-	0xc5, 0x29, 0x33, 0x3f, 0x24, 0x9f, 0x4a, 0x3e, 0x55, 0x92, 0xe1, 0x92, 0xc2, 0x34, 0x15, 0x66,
-	0xa7, 0xd1, 0x7b, 0x26, 0x2e, 0x66, 0xdf, 0xe2, 0x74, 0xa1, 0x70, 0x2e, 0x5e, 0xd4, 0xa8, 0x96,
-	0xd3, 0x43, 0x4e, 0x23, 0x7a, 0xe8, 0x91, 0x23, 0xa5, 0x86, 0x5f, 0x1e, 0x66, 0x01, 0xc8, 0x60,
-	0xd4, 0x98, 0xc3, 0x34, 0x18, 0x45, 0x1e, 0x8b, 0xc1, 0x58, 0xe3, 0x02, 0x64, 0x30, 0x6a, 0x44,
-	0x60, 0x1a, 0x8c, 0x22, 0x8f, 0xc5, 0x60, 0xac, 0xd1, 0x20, 0x14, 0xcb, 0xc5, 0x8f, 0x1e, 0x07,
-	0x0a, 0x18, 0x5a, 0xd1, 0x54, 0x48, 0x69, 0x10, 0x52, 0x01, 0x33, 0xde, 0x49, 0xef, 0xc4, 0x23,
-	0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e, 0xe1, 0xc2,
-	0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0x44, 0x40, 0x46, 0xe8, 0x57, 0xe8, 0xc3, 0xb3,
-	0x6b, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x3b, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff,
-	0x3f, 0x8b, 0x0d, 0x5a, 0xc6, 0x03, 0x00, 0x00,
+	// 369 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x94, 0xdf, 0x4a, 0xc3, 0x30,
+	0x14, 0xc6, 0x57, 0x3b, 0x14, 0x0f, 0x8a, 0x23, 0x0e, 0x09, 0x41, 0xc2, 0x18, 0x22, 0xbb, 0x90,
+	0x16, 0xf4, 0x05, 0x74, 0x7a, 0x3b, 0x90, 0x31, 0x19, 0x08, 0x82, 0xfb, 0x13, 0x6b, 0x61, 0x2e,
+	0xa5, 0x29, 0x38, 0xdf, 0xc2, 0xc7, 0xf2, 0x72, 0x97, 0xe2, 0x95, 0xb4, 0x2f, 0x22, 0x49, 0xff,
+	0xb0, 0xb4, 0x41, 0x65, 0x88, 0x77, 0xe9, 0x39, 0x27, 0xbf, 0xef, 0x4b, 0xfa, 0x11, 0x68, 0x04,
+	0x21, 0x7f, 0xf0, 0x67, 0xcc, 0x8d, 0x16, 0x4e, 0x10, 0xf2, 0x88, 0xa3, 0x9d, 0xc9, 0xe3, 0x28,
+	0x72, 0xb2, 0x32, 0x69, 0x7a, 0xdc, 0xe3, 0xaa, 0xe1, 0xca, 0x55, 0x3a, 0xd3, 0x9e, 0x41, 0xa3,
+	0x27, 0xbc, 0xcb, 0x90, 0x8d, 0x22, 0x76, 0x9d, 0x4e, 0x22, 0x0c, 0x5b, 0x13, 0x59, 0xe0, 0x21,
+	0xb6, 0x5a, 0x56, 0x67, 0xbb, 0x9f, 0x7f, 0x22, 0x04, 0xf5, 0xf9, 0xe8, 0x89, 0xe1, 0x0d, 0x55,
+	0x56, 0x6b, 0xd4, 0x00, 0x7b, 0xec, 0x73, 0x6c, 0xab, 0x92, 0x5c, 0xca, 0xfd, 0xcf, 0x6c, 0x2c,
+	0xfc, 0x88, 0xe1, 0x7a, 0xba, 0x3f, 0xfb, 0x6c, 0x13, 0xc0, 0x65, 0xb5, 0x3e, 0x13, 0x01, 0x9f,
+	0x0b, 0x96, 0x39, 0xb9, 0x09, 0xa6, 0xff, 0xe8, 0x44, 0x53, 0x2b, 0x9c, 0x9c, 0x2b, 0x27, 0x57,
+	0x6c, 0xc6, 0xd6, 0x74, 0x92, 0xd1, 0x35, 0x42, 0x41, 0x1f, 0x00, 0xea, 0x09, 0xef, 0x62, 0x3a,
+	0xed, 0xfa, 0x7c, 0xc0, 0xff, 0xe8, 0xa4, 0xed, 0x43, 0x20, 0x55, 0x6a, 0xa1, 0x79, 0x0f, 0x07,
+	0x69, 0x77, 0x98, 0x1e, 0x7f, 0x5d, 0xdd, 0x95, 0xfb, 0xb4, 0xf5, 0xfb, 0x6c, 0x01, 0x35, 0x2b,
+	0xe4, 0x1e, 0x4e, 0x3f, 0x6c, 0xb0, 0x7b, 0xc2, 0x43, 0x43, 0xd8, 0xd5, 0xe3, 0x46, 0x9d, 0xd5,
+	0x9c, 0x3a, 0xe5, 0x80, 0x90, 0xe3, 0xef, 0xfb, 0xb9, 0x80, 0x04, 0xeb, 0xe9, 0xa9, 0x82, 0xb5,
+	0xbe, 0x01, 0x6c, 0xcc, 0x83, 0x04, 0xeb, 0x61, 0xa8, 0x82, 0xb5, 0xbe, 0x01, 0x6c, 0x8c, 0x02,
+	0xba, 0x83, 0xbd, 0x72, 0x0e, 0x5a, 0x95, 0xad, 0xa5, 0x09, 0xd2, 0xf9, 0x69, 0xa2, 0xc0, 0xfb,
+	0xb0, 0x6f, 0xfa, 0xe5, 0x47, 0x26, 0x40, 0x79, 0x8a, 0x9c, 0xfc, 0x66, 0x2a, 0x97, 0xea, 0x3a,
+	0x6f, 0x31, 0xb5, 0x96, 0x31, 0xb5, 0x3e, 0x63, 0x6a, 0xbd, 0x26, 0xb4, 0xb6, 0x4c, 0x68, 0xed,
+	0x3d, 0xa1, 0xb5, 0xdb, 0xa6, 0xc4, 0xb8, 0x0b, 0xb7, 0x78, 0x9d, 0x5e, 0x02, 0x26, 0xc6, 0x9b,
+	0xea, 0xf5, 0x39, 0xfb, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x28, 0x67, 0x73, 0x7e, 0xb5, 0x04, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -474,6 +575,7 @@ type MsgClient interface {
 	UpdateProfile(ctx context.Context, in *MsgUpdateProfile, opts ...grpc.CallOption) (*MsgUpdateProfileResponse, error)
 	DeleteProfile(ctx context.Context, in *MsgDeleteProfile, opts ...grpc.CallOption) (*MsgDeleteProfileResponse, error)
 	AddBioToProfile(ctx context.Context, in *MsgAddBioToProfile, opts ...grpc.CallOption) (*MsgAddBioToProfileResponse, error)
+	AddWebsiteToProfile(ctx context.Context, in *MsgAddWebsiteToProfile, opts ...grpc.CallOption) (*MsgAddWebsiteToProfileResponse, error)
 }
 
 type msgClient struct {
@@ -520,12 +622,22 @@ func (c *msgClient) AddBioToProfile(ctx context.Context, in *MsgAddBioToProfile,
 	return out, nil
 }
 
+func (c *msgClient) AddWebsiteToProfile(ctx context.Context, in *MsgAddWebsiteToProfile, opts ...grpc.CallOption) (*MsgAddWebsiteToProfileResponse, error) {
+	out := new(MsgAddWebsiteToProfileResponse)
+	err := c.cc.Invoke(ctx, "/chat.profile.Msg/AddWebsiteToProfile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	CreateProfile(context.Context, *MsgCreateProfile) (*MsgCreateProfileResponse, error)
 	UpdateProfile(context.Context, *MsgUpdateProfile) (*MsgUpdateProfileResponse, error)
 	DeleteProfile(context.Context, *MsgDeleteProfile) (*MsgDeleteProfileResponse, error)
 	AddBioToProfile(context.Context, *MsgAddBioToProfile) (*MsgAddBioToProfileResponse, error)
+	AddWebsiteToProfile(context.Context, *MsgAddWebsiteToProfile) (*MsgAddWebsiteToProfileResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -543,6 +655,9 @@ func (*UnimplementedMsgServer) DeleteProfile(ctx context.Context, req *MsgDelete
 }
 func (*UnimplementedMsgServer) AddBioToProfile(ctx context.Context, req *MsgAddBioToProfile) (*MsgAddBioToProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBioToProfile not implemented")
+}
+func (*UnimplementedMsgServer) AddWebsiteToProfile(ctx context.Context, req *MsgAddWebsiteToProfile) (*MsgAddWebsiteToProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddWebsiteToProfile not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -621,6 +736,24 @@ func _Msg_AddBioToProfile_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_AddWebsiteToProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgAddWebsiteToProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).AddWebsiteToProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chat.profile.Msg/AddWebsiteToProfile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).AddWebsiteToProfile(ctx, req.(*MsgAddWebsiteToProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.profile.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -640,6 +773,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddBioToProfile",
 			Handler:    _Msg_AddBioToProfile_Handler,
+		},
+		{
+			MethodName: "AddWebsiteToProfile",
+			Handler:    _Msg_AddWebsiteToProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -921,6 +1058,73 @@ func (m *MsgAddBioToProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, err
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgAddWebsiteToProfile) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgAddWebsiteToProfile) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgAddWebsiteToProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Website) > 0 {
+		i -= len(m.Website)
+		copy(dAtA[i:], m.Website)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Website)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgAddWebsiteToProfileResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgAddWebsiteToProfileResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgAddWebsiteToProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -1048,6 +1252,36 @@ func (m *MsgAddBioToProfile) Size() (n int) {
 }
 
 func (m *MsgAddBioToProfileResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgAddWebsiteToProfile) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Website)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgAddWebsiteToProfileResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1855,6 +2089,202 @@ func (m *MsgAddBioToProfileResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgAddBioToProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgAddWebsiteToProfile) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgAddWebsiteToProfile: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgAddWebsiteToProfile: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Website = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgAddWebsiteToProfileResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgAddWebsiteToProfileResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgAddWebsiteToProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

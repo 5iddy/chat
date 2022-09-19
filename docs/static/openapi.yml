@@ -31676,6 +31676,8 @@ definitions:
     description: QueryParamsResponse is response type for the Query/Params RPC method.
   chat.profile.MsgAddBioToProfileResponse:
     type: object
+  chat.profile.MsgAddWebsiteToProfileResponse:
+    type: object
   chat.profile.MsgCreateProfileResponse:
     type: object
   chat.profile.MsgDeleteProfileResponse:
