@@ -4,31 +4,27 @@ import { Writer, Reader } from "protobufjs/minimal";
 export const protobufPackage = "chat.chat";
 
 export interface Letter {
-  from: string;
   to: string;
   creator: string;
   content: Uint8Array;
   contentType: string;
 }
 
-const baseLetter: object = { from: "", to: "", creator: "", contentType: "" };
+const baseLetter: object = { to: "", creator: "", contentType: "" };
 
 export const Letter = {
   encode(message: Letter, writer: Writer = Writer.create()): Writer {
-    if (message.from !== "") {
-      writer.uint32(10).string(message.from);
-    }
     if (message.to !== "") {
-      writer.uint32(18).string(message.to);
+      writer.uint32(10).string(message.to);
     }
     if (message.creator !== "") {
-      writer.uint32(26).string(message.creator);
+      writer.uint32(18).string(message.creator);
     }
     if (message.content.length !== 0) {
-      writer.uint32(34).bytes(message.content);
+      writer.uint32(26).bytes(message.content);
     }
     if (message.contentType !== "") {
-      writer.uint32(42).string(message.contentType);
+      writer.uint32(34).string(message.contentType);
     }
     return writer;
   },
@@ -41,18 +37,15 @@ export const Letter = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.from = reader.string();
-          break;
-        case 2:
           message.to = reader.string();
           break;
-        case 3:
+        case 2:
           message.creator = reader.string();
           break;
-        case 4:
+        case 3:
           message.content = reader.bytes();
           break;
-        case 5:
+        case 4:
           message.contentType = reader.string();
           break;
         default:
@@ -65,11 +58,6 @@ export const Letter = {
 
   fromJSON(object: any): Letter {
     const message = { ...baseLetter } as Letter;
-    if (object.from !== undefined && object.from !== null) {
-      message.from = String(object.from);
-    } else {
-      message.from = "";
-    }
     if (object.to !== undefined && object.to !== null) {
       message.to = String(object.to);
     } else {
@@ -93,7 +81,6 @@ export const Letter = {
 
   toJSON(message: Letter): unknown {
     const obj: any = {};
-    message.from !== undefined && (obj.from = message.from);
     message.to !== undefined && (obj.to = message.to);
     message.creator !== undefined && (obj.creator = message.creator);
     message.content !== undefined &&
@@ -107,11 +94,6 @@ export const Letter = {
 
   fromPartial(object: DeepPartial<Letter>): Letter {
     const message = { ...baseLetter } as Letter;
-    if (object.from !== undefined && object.from !== null) {
-      message.from = object.from;
-    } else {
-      message.from = "";
-    }
     if (object.to !== undefined && object.to !== null) {
       message.to = object.to;
     } else {

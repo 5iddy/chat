@@ -1,0 +1,11 @@
+syntax = "proto3";
+package chat.chat;
+
+import "chat/letter.proto";
+
+option go_package = "chat/x/chat/types";
+
+message LetterBox {
+  uint64 count = 1; 
+  repeated Letter letters = 2;
+}
