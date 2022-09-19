@@ -29,6 +29,7 @@ export interface BlogPost {
   title?: string;
   body?: string;
   creator?: string;
+  name?: string;
 }
 
 export interface BlogQueryAllPostResponse {

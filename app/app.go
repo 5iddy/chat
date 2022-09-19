@@ -439,6 +439,9 @@ func New(
 		keys[blogmoduletypes.StoreKey],
 		keys[blogmoduletypes.MemStoreKey],
 		app.GetSubspace(blogmoduletypes.ModuleName),
+		app.AccountKeeper,
+		app.BankKeeper,
+		app.ProfileKeeper,
 	)
 	blogModule := blogmodule.NewAppModule(appCodec, app.BlogKeeper, app.AccountKeeper, app.BankKeeper)
 

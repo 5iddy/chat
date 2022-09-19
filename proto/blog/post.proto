@@ -8,4 +8,5 @@ message Post {
   string title = 2; 
   string body = 3; 
   string creator = 4;
+  string name = 5;
 }
