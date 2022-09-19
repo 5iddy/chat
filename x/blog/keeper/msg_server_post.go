@@ -5,6 +5,8 @@ import (
 	"fmt"
 
 	"chat/x/blog/types"
+	profiletypes "chat/x/profile/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -18,10 +20,41 @@ func (k msgServer) CreatePost(goCtx context.Context, msg *types.MsgCreatePost) (
 		Body:    msg.Body,
 	}
 
-	id := k.AppendPost(
-		ctx,
-		post,
-	)
+	currentProfile, isFound := k.profileKeeper.GetProfile(ctx, msg.Name)
+	var id uint64
+
+	if isFound && currentProfile.Creator == msg.Creator {
+		post.Name = currentProfile.Name
+		id = k.AppendPost(
+			ctx,
+			post,
+		)
+		currentProfile.Posts = append(currentProfile.Posts, id)
+		k.profileKeeper.SetProfile(ctx, currentProfile)
+		return &types.MsgCreatePostResponse{
+			Id: id,
+		}, nil
+	}
+	if isFound && currentProfile.Creator != msg.Creator {
+		err := sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "Unauthorized Request")
+		return nil, err
+	}
+	if !isFound {
+		post.Name = msg.Name
+		id = k.AppendPost(
+			ctx,
+			post,
+		)
+		profile := profiletypes.Profile{
+			Name:    msg.Name,
+			Creator: msg.Creator,
+			Posts:   []uint64{id},
+		}
+		k.profileKeeper.SetProfile(ctx, profile)
+		return &types.MsgCreatePostResponse{
+			Id: id,
+		}, nil
+	}
 
 	return &types.MsgCreatePostResponse{
 		Id: id,

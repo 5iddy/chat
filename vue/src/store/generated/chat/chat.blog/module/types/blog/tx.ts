@@ -6,6 +6,7 @@ export const protobufPackage = "chat.blog";
 
 export interface MsgCreatePost {
   creator: string;
+  name: string;
   title: string;
   body: string;
 }
@@ -30,18 +31,26 @@ export interface MsgDeletePost {
 
 export interface MsgDeletePostResponse {}
 
-const baseMsgCreatePost: object = { creator: "", title: "", body: "" };
+const baseMsgCreatePost: object = {
+  creator: "",
+  name: "",
+  title: "",
+  body: "",
+};
 
 export const MsgCreatePost = {
   encode(message: MsgCreatePost, writer: Writer = Writer.create()): Writer {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
     if (message.title !== "") {
-      writer.uint32(18).string(message.title);
+      writer.uint32(26).string(message.title);
     }
     if (message.body !== "") {
-      writer.uint32(26).string(message.body);
+      writer.uint32(34).string(message.body);
     }
     return writer;
   },
@@ -57,9 +66,12 @@ export const MsgCreatePost = {
           message.creator = reader.string();
           break;
         case 2:
-          message.title = reader.string();
+          message.name = reader.string();
           break;
         case 3:
+          message.title = reader.string();
+          break;
+        case 4:
           message.body = reader.string();
           break;
         default:
@@ -77,6 +89,11 @@ export const MsgCreatePost = {
     } else {
       message.creator = "";
     }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
     if (object.title !== undefined && object.title !== null) {
       message.title = String(object.title);
     } else {
@@ -93,6 +110,7 @@ export const MsgCreatePost = {
   toJSON(message: MsgCreatePost): unknown {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
+    message.name !== undefined && (obj.name = message.name);
     message.title !== undefined && (obj.title = message.title);
     message.body !== undefined && (obj.body = message.body);
     return obj;
@@ -104,6 +122,11 @@ export const MsgCreatePost = {
       message.creator = object.creator;
     } else {
       message.creator = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
     }
     if (object.title !== undefined && object.title !== null) {
       message.title = object.title;
