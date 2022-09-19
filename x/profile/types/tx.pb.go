@@ -324,6 +324,102 @@ func (m *MsgDeleteProfileResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgDeleteProfileResponse proto.InternalMessageInfo
 
+type MsgAddBioToProfile struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Name    string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Bio     string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+}
+
+func (m *MsgAddBioToProfile) Reset()         { *m = MsgAddBioToProfile{} }
+func (m *MsgAddBioToProfile) String() string { return proto.CompactTextString(m) }
+func (*MsgAddBioToProfile) ProtoMessage()    {}
+func (*MsgAddBioToProfile) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a471fea62152592e, []int{6}
+}
+func (m *MsgAddBioToProfile) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgAddBioToProfile) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgAddBioToProfile.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgAddBioToProfile) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgAddBioToProfile.Merge(m, src)
+}
+func (m *MsgAddBioToProfile) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgAddBioToProfile) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgAddBioToProfile.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgAddBioToProfile proto.InternalMessageInfo
+
+func (m *MsgAddBioToProfile) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgAddBioToProfile) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MsgAddBioToProfile) GetBio() string {
+	if m != nil {
+		return m.Bio
+	}
+	return ""
+}
+
+type MsgAddBioToProfileResponse struct {
+}
+
+func (m *MsgAddBioToProfileResponse) Reset()         { *m = MsgAddBioToProfileResponse{} }
+func (m *MsgAddBioToProfileResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgAddBioToProfileResponse) ProtoMessage()    {}
+func (*MsgAddBioToProfileResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a471fea62152592e, []int{7}
+}
+func (m *MsgAddBioToProfileResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgAddBioToProfileResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgAddBioToProfileResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgAddBioToProfileResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgAddBioToProfileResponse.Merge(m, src)
+}
+func (m *MsgAddBioToProfileResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgAddBioToProfileResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgAddBioToProfileResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgAddBioToProfileResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgCreateProfile)(nil), "chat.profile.MsgCreateProfile")
 	proto.RegisterType((*MsgCreateProfileResponse)(nil), "chat.profile.MsgCreateProfileResponse")
@@ -331,12 +427,14 @@ func init() {
 	proto.RegisterType((*MsgUpdateProfileResponse)(nil), "chat.profile.MsgUpdateProfileResponse")
 	proto.RegisterType((*MsgDeleteProfile)(nil), "chat.profile.MsgDeleteProfile")
 	proto.RegisterType((*MsgDeleteProfileResponse)(nil), "chat.profile.MsgDeleteProfileResponse")
+	proto.RegisterType((*MsgAddBioToProfile)(nil), "chat.profile.MsgAddBioToProfile")
+	proto.RegisterType((*MsgAddBioToProfileResponse)(nil), "chat.profile.MsgAddBioToProfileResponse")
 }
 
 func init() { proto.RegisterFile("profile/tx.proto", fileDescriptor_a471fea62152592e) }
 
 var fileDescriptor_a471fea62152592e = []byte{
-	// 285 bytes of a gzipped FileDescriptorProto
+	// 328 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x28, 0xca, 0x4f,
 	0xcb, 0xcc, 0x49, 0xd5, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x49, 0xce,
 	0x48, 0x2c, 0xd1, 0x83, 0x0a, 0x4b, 0x89, 0xa4, 0xe7, 0xa7, 0xe7, 0x83, 0x25, 0xf4, 0x41, 0x2c,
@@ -347,14 +445,17 @@ var fileDescriptor_a471fea62152592e = []byte{
 	0x79, 0x6a, 0x52, 0x71, 0x66, 0x49, 0xaa, 0x04, 0x0b, 0x44, 0x3f, 0x94, 0xab, 0x24, 0xc5, 0x25,
 	0x81, 0x6e, 0x5b, 0x50, 0x6a, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0x2a, 0xd4, 0x25, 0xa1, 0x05, 0x29,
 	0x74, 0x74, 0x09, 0x8a, 0x6d, 0x70, 0x97, 0x38, 0x80, 0x5d, 0xe2, 0x92, 0x9a, 0x93, 0x4a, 0xa6,
-	0x4b, 0xa0, 0xa6, 0xa3, 0x98, 0x00, 0x33, 0xdd, 0x68, 0x02, 0x13, 0x17, 0xb3, 0x6f, 0x71, 0xba,
-	0x50, 0x38, 0x17, 0x2f, 0x6a, 0xb0, 0xcb, 0xe9, 0x21, 0xc7, 0x97, 0x1e, 0x7a, 0x40, 0x49, 0xa9,
-	0xe1, 0x97, 0x87, 0x59, 0x00, 0x32, 0x18, 0x35, 0x14, 0x31, 0x0d, 0x46, 0x91, 0xc7, 0x62, 0x30,
-	0xd6, 0x70, 0x01, 0x19, 0x8c, 0x1a, 0x28, 0x98, 0x06, 0xa3, 0xc8, 0x63, 0x31, 0x18, 0x6b, 0x90,
-	0x38, 0xe9, 0x9d, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13,
-	0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x08, 0xc8, 0x00,
-	0xfd, 0x0a, 0x7d, 0x78, 0xda, 0xae, 0x2c, 0x48, 0x2d, 0x4e, 0x62, 0x03, 0xa7, 0x5d, 0x63, 0x40,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0x0c, 0xed, 0xce, 0xb8, 0xf3, 0x02, 0x00, 0x00,
+	0x4b, 0xa0, 0xa6, 0xa3, 0x98, 0x00, 0x37, 0x3d, 0x84, 0x4b, 0xc8, 0xb7, 0x38, 0xdd, 0x31, 0x25,
+	0xc5, 0x29, 0x33, 0x3f, 0x24, 0x9f, 0x4a, 0x3e, 0x55, 0x92, 0xe1, 0x92, 0xc2, 0x34, 0x15, 0x66,
+	0xa7, 0xd1, 0x7b, 0x26, 0x2e, 0x66, 0xdf, 0xe2, 0x74, 0xa1, 0x70, 0x2e, 0x5e, 0xd4, 0xa8, 0x96,
+	0xd3, 0x43, 0x4e, 0x23, 0x7a, 0xe8, 0x91, 0x23, 0xa5, 0x86, 0x5f, 0x1e, 0x66, 0x01, 0xc8, 0x60,
+	0xd4, 0x98, 0xc3, 0x34, 0x18, 0x45, 0x1e, 0x8b, 0xc1, 0x58, 0xe3, 0x02, 0x64, 0x30, 0x6a, 0x44,
+	0x60, 0x1a, 0x8c, 0x22, 0x8f, 0xc5, 0x60, 0xac, 0xd1, 0x20, 0x14, 0xcb, 0xc5, 0x8f, 0x1e, 0x07,
+	0x0a, 0x18, 0x5a, 0xd1, 0x54, 0x48, 0x69, 0x10, 0x52, 0x01, 0x33, 0xde, 0x49, 0xef, 0xc4, 0x23,
+	0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e, 0xe1, 0xc2,
+	0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0x44, 0x40, 0x46, 0xe8, 0x57, 0xe8, 0xc3, 0xb3,
+	0x6b, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x3b, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff,
+	0x3f, 0x8b, 0x0d, 0x5a, 0xc6, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -372,6 +473,7 @@ type MsgClient interface {
 	CreateProfile(ctx context.Context, in *MsgCreateProfile, opts ...grpc.CallOption) (*MsgCreateProfileResponse, error)
 	UpdateProfile(ctx context.Context, in *MsgUpdateProfile, opts ...grpc.CallOption) (*MsgUpdateProfileResponse, error)
 	DeleteProfile(ctx context.Context, in *MsgDeleteProfile, opts ...grpc.CallOption) (*MsgDeleteProfileResponse, error)
+	AddBioToProfile(ctx context.Context, in *MsgAddBioToProfile, opts ...grpc.CallOption) (*MsgAddBioToProfileResponse, error)
 }
 
 type msgClient struct {
@@ -409,11 +511,21 @@ func (c *msgClient) DeleteProfile(ctx context.Context, in *MsgDeleteProfile, opt
 	return out, nil
 }
 
+func (c *msgClient) AddBioToProfile(ctx context.Context, in *MsgAddBioToProfile, opts ...grpc.CallOption) (*MsgAddBioToProfileResponse, error) {
+	out := new(MsgAddBioToProfileResponse)
+	err := c.cc.Invoke(ctx, "/chat.profile.Msg/AddBioToProfile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	CreateProfile(context.Context, *MsgCreateProfile) (*MsgCreateProfileResponse, error)
 	UpdateProfile(context.Context, *MsgUpdateProfile) (*MsgUpdateProfileResponse, error)
 	DeleteProfile(context.Context, *MsgDeleteProfile) (*MsgDeleteProfileResponse, error)
+	AddBioToProfile(context.Context, *MsgAddBioToProfile) (*MsgAddBioToProfileResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -428,6 +540,9 @@ func (*UnimplementedMsgServer) UpdateProfile(ctx context.Context, req *MsgUpdate
 }
 func (*UnimplementedMsgServer) DeleteProfile(ctx context.Context, req *MsgDeleteProfile) (*MsgDeleteProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProfile not implemented")
+}
+func (*UnimplementedMsgServer) AddBioToProfile(ctx context.Context, req *MsgAddBioToProfile) (*MsgAddBioToProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBioToProfile not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -488,6 +603,24 @@ func _Msg_DeleteProfile_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_AddBioToProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgAddBioToProfile)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).AddBioToProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/chat.profile.Msg/AddBioToProfile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).AddBioToProfile(ctx, req.(*MsgAddBioToProfile))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.profile.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -503,6 +636,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteProfile",
 			Handler:    _Msg_DeleteProfile_Handler,
+		},
+		{
+			MethodName: "AddBioToProfile",
+			Handler:    _Msg_AddBioToProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -717,6 +854,73 @@ func (m *MsgDeleteProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgAddBioToProfile) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgAddBioToProfile) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgAddBioToProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Bio) > 0 {
+		i -= len(m.Bio)
+		copy(dAtA[i:], m.Bio)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Bio)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgAddBioToProfileResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgAddBioToProfileResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgAddBioToProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -814,6 +1018,36 @@ func (m *MsgDeleteProfile) Size() (n int) {
 }
 
 func (m *MsgDeleteProfileResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgAddBioToProfile) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Bio)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgAddBioToProfileResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1425,6 +1659,202 @@ func (m *MsgDeleteProfileResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgDeleteProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgAddBioToProfile) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgAddBioToProfile: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgAddBioToProfile: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Bio", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Bio = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgAddBioToProfileResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgAddBioToProfileResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgAddBioToProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

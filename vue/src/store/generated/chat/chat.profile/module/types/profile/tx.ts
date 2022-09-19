@@ -28,6 +28,14 @@ export interface MsgDeleteProfile {
 
 export interface MsgDeleteProfileResponse {}
 
+export interface MsgAddBioToProfile {
+  creator: string;
+  name: string;
+  bio: string;
+}
+
+export interface MsgAddBioToProfileResponse {}
+
 const baseMsgCreateProfile: object = {
   creator: "",
   name: "",
@@ -478,12 +486,159 @@ export const MsgDeleteProfileResponse = {
   },
 };
 
+const baseMsgAddBioToProfile: object = { creator: "", name: "", bio: "" };
+
+export const MsgAddBioToProfile = {
+  encode(
+    message: MsgAddBioToProfile,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.bio !== "") {
+      writer.uint32(26).string(message.bio);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgAddBioToProfile {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgAddBioToProfile } as MsgAddBioToProfile;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.name = reader.string();
+          break;
+        case 3:
+          message.bio = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgAddBioToProfile {
+    const message = { ...baseMsgAddBioToProfile } as MsgAddBioToProfile;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    if (object.bio !== undefined && object.bio !== null) {
+      message.bio = String(object.bio);
+    } else {
+      message.bio = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgAddBioToProfile): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.name !== undefined && (obj.name = message.name);
+    message.bio !== undefined && (obj.bio = message.bio);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgAddBioToProfile>): MsgAddBioToProfile {
+    const message = { ...baseMsgAddBioToProfile } as MsgAddBioToProfile;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    if (object.bio !== undefined && object.bio !== null) {
+      message.bio = object.bio;
+    } else {
+      message.bio = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgAddBioToProfileResponse: object = {};
+
+export const MsgAddBioToProfileResponse = {
+  encode(
+    _: MsgAddBioToProfileResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgAddBioToProfileResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgAddBioToProfileResponse,
+    } as MsgAddBioToProfileResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgAddBioToProfileResponse {
+    const message = {
+      ...baseMsgAddBioToProfileResponse,
+    } as MsgAddBioToProfileResponse;
+    return message;
+  },
+
+  toJSON(_: MsgAddBioToProfileResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgAddBioToProfileResponse>
+  ): MsgAddBioToProfileResponse {
+    const message = {
+      ...baseMsgAddBioToProfileResponse,
+    } as MsgAddBioToProfileResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateProfile(request: MsgCreateProfile): Promise<MsgCreateProfileResponse>;
   UpdateProfile(request: MsgUpdateProfile): Promise<MsgUpdateProfileResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   DeleteProfile(request: MsgDeleteProfile): Promise<MsgDeleteProfileResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  AddBioToProfile(
+    request: MsgAddBioToProfile
+  ): Promise<MsgAddBioToProfileResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -512,6 +667,20 @@ export class MsgClientImpl implements Msg {
     const promise = this.rpc.request("chat.profile.Msg", "DeleteProfile", data);
     return promise.then((data) =>
       MsgDeleteProfileResponse.decode(new Reader(data))
+    );
+  }
+
+  AddBioToProfile(
+    request: MsgAddBioToProfile
+  ): Promise<MsgAddBioToProfileResponse> {
+    const data = MsgAddBioToProfile.encode(request).finish();
+    const promise = this.rpc.request(
+      "chat.profile.Msg",
+      "AddBioToProfile",
+      data
+    );
+    return promise.then((data) =>
+      MsgAddBioToProfileResponse.decode(new Reader(data))
     );
   }
 }

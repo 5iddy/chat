@@ -11,6 +11,7 @@ service Msg {
       rpc CreateProfile(MsgCreateProfile) returns (MsgCreateProfileResponse);
   rpc UpdateProfile(MsgUpdateProfile) returns (MsgUpdateProfileResponse);
   rpc DeleteProfile(MsgDeleteProfile) returns (MsgDeleteProfileResponse);
+  rpc AddBioToProfile(MsgAddBioToProfile) returns (MsgAddBioToProfileResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -36,5 +37,14 @@ message MsgDeleteProfile {
   string name = 2;
 }
 message MsgDeleteProfileResponse {}
+
+message MsgAddBioToProfile {
+  string creator = 1;
+  string name = 2;
+  string bio = 3;
+}
+
+message MsgAddBioToProfileResponse {
+}
 
 // this line is used by starport scaffolding # proto/tx/message

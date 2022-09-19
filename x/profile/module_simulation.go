@@ -36,6 +36,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeleteProfile int = 100
 
+	opWeightMsgAddBioToProfile = "op_weight_msg_add_bio_to_profile"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgAddBioToProfile int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -111,6 +115,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteProfile,
 		profilesimulation.SimulateMsgDeleteProfile(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgAddBioToProfile int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgAddBioToProfile, &weightMsgAddBioToProfile, nil,
+		func(_ *rand.Rand) {
+			weightMsgAddBioToProfile = defaultWeightMsgAddBioToProfile
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgAddBioToProfile,
+		profilesimulation.SimulateMsgAddBioToProfile(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

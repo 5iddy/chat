@@ -33,6 +33,7 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(CmdCreateProfile())
 	cmd.AddCommand(CmdUpdateProfile())
 	cmd.AddCommand(CmdDeleteProfile())
+	cmd.AddCommand(CmdAddBioToProfile())
 	// this line is used by starport scaffolding # 1
 
 	return cmd
