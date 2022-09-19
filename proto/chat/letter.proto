@@ -4,9 +4,9 @@ package chat.chat;
 option go_package = "chat/x/chat/types";
 
 message Letter {
-  
   string from = 1; 
-  string to = 2; 
-  string content = 3; 
-  string contentType = 4; 
+  string to = 2;
+  string creator = 3; 
+  bytes content = 4; 
+  string contentType = 5; 
 }

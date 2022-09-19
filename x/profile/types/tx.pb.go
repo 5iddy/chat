@@ -6,6 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
+	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -28,11 +29,10 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type MsgCreateProfile struct {
-	Creator string   `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Name    string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Bio     string   `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
-	Website string   `protobuf:"bytes,4,opt,name=website,proto3" json:"website,omitempty"`
-	Posts   []uint64 `protobuf:"varint,5,rep,packed,name=posts,proto3" json:"posts,omitempty"`
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Name    string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Bio     string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Website string `protobuf:"bytes,4,opt,name=website,proto3" json:"website,omitempty"`
 }
 
 func (m *MsgCreateProfile) Reset()         { *m = MsgCreateProfile{} }
@@ -96,13 +96,6 @@ func (m *MsgCreateProfile) GetWebsite() string {
 	return ""
 }
 
-func (m *MsgCreateProfile) GetPosts() []uint64 {
-	if m != nil {
-		return m.Posts
-	}
-	return nil
-}
-
 type MsgCreateProfileResponse struct {
 }
 
@@ -140,11 +133,10 @@ func (m *MsgCreateProfileResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgCreateProfileResponse proto.InternalMessageInfo
 
 type MsgUpdateProfile struct {
-	Creator string   `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Name    string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Bio     string   `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
-	Website string   `protobuf:"bytes,4,opt,name=website,proto3" json:"website,omitempty"`
-	Posts   []uint64 `protobuf:"varint,5,rep,packed,name=posts,proto3" json:"posts,omitempty"`
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Name    string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Bio     string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Website string `protobuf:"bytes,4,opt,name=website,proto3" json:"website,omitempty"`
 }
 
 func (m *MsgUpdateProfile) Reset()         { *m = MsgUpdateProfile{} }
@@ -206,13 +198,6 @@ func (m *MsgUpdateProfile) GetWebsite() string {
 		return m.Website
 	}
 	return ""
-}
-
-func (m *MsgUpdateProfile) GetPosts() []uint64 {
-	if m != nil {
-		return m.Posts
-	}
-	return nil
 }
 
 type MsgUpdateProfileResponse struct {
@@ -351,26 +336,25 @@ func init() {
 func init() { proto.RegisterFile("profile/tx.proto", fileDescriptor_a471fea62152592e) }
 
 var fileDescriptor_a471fea62152592e = []byte{
-	// 298 bytes of a gzipped FileDescriptorProto
+	// 285 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x28, 0xca, 0x4f,
 	0xcb, 0xcc, 0x49, 0xd5, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x49, 0xce,
-	0x48, 0x2c, 0xd1, 0x83, 0x0a, 0x4b, 0x89, 0xc2, 0xe4, 0xa1, 0x34, 0x44, 0x91, 0x52, 0x13, 0x23,
-	0x97, 0x80, 0x6f, 0x71, 0xba, 0x73, 0x51, 0x6a, 0x62, 0x49, 0x6a, 0x00, 0x44, 0x4a, 0x48, 0x82,
-	0x8b, 0x3d, 0x19, 0x24, 0x90, 0x5f, 0x24, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0x19, 0x04, 0xe3, 0x0a,
-	0x09, 0x71, 0xb1, 0xe4, 0x25, 0xe6, 0xa6, 0x4a, 0x30, 0x81, 0x85, 0xc1, 0x6c, 0x21, 0x01, 0x2e,
-	0xe6, 0xa4, 0xcc, 0x7c, 0x09, 0x66, 0xb0, 0x10, 0x88, 0x09, 0xd2, 0x5f, 0x9e, 0x9a, 0x54, 0x9c,
-	0x59, 0x92, 0x2a, 0xc1, 0x02, 0xd1, 0x0f, 0xe5, 0x0a, 0x89, 0x70, 0xb1, 0x16, 0xe4, 0x17, 0x97,
-	0x14, 0x4b, 0xb0, 0x2a, 0x30, 0x6b, 0xb0, 0x04, 0x41, 0x38, 0x4a, 0x52, 0x5c, 0x12, 0xe8, 0x6e,
-	0x08, 0x4a, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0x85, 0x39, 0x30, 0xb4, 0x20, 0x65, 0xc0, 0x1d,
-	0x88, 0xe2, 0x06, 0xb8, 0x03, 0x1d, 0xc0, 0xee, 0x73, 0x49, 0xcd, 0x49, 0x25, 0xd3, 0x7d, 0x50,
-	0xd3, 0x51, 0x4c, 0x80, 0x99, 0x6e, 0x34, 0x81, 0x89, 0x8b, 0xd9, 0xb7, 0x38, 0x5d, 0x28, 0x9c,
-	0x8b, 0x17, 0x35, 0x8e, 0xe4, 0xf4, 0x90, 0xa3, 0x57, 0x0f, 0x3d, 0xfc, 0xa4, 0xd4, 0xf0, 0xcb,
-	0xc3, 0x2c, 0x00, 0x19, 0x8c, 0x1a, 0xb6, 0x98, 0x06, 0xa3, 0xc8, 0x63, 0x31, 0x18, 0x6b, 0xb8,
-	0x80, 0x0c, 0x46, 0x0d, 0x14, 0x4c, 0x83, 0x51, 0xe4, 0xb1, 0x18, 0x8c, 0x35, 0x48, 0x9c, 0xf4,
-	0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5,
-	0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0x4a, 0x04, 0x64, 0x80, 0x7e, 0x85,
-	0x3e, 0x3c, 0x2b, 0x54, 0x16, 0xa4, 0x16, 0x27, 0xb1, 0x81, 0x53, 0xba, 0x31, 0x20, 0x00, 0x00,
-	0xff, 0xff, 0xb5, 0xcb, 0xf4, 0xde, 0x22, 0x03, 0x00, 0x00,
+	0x48, 0x2c, 0xd1, 0x83, 0x0a, 0x4b, 0x89, 0xa4, 0xe7, 0xa7, 0xe7, 0x83, 0x25, 0xf4, 0x41, 0x2c,
+	0x88, 0x1a, 0xa5, 0x1c, 0x2e, 0x01, 0xdf, 0xe2, 0x74, 0xe7, 0xa2, 0xd4, 0xc4, 0x92, 0xd4, 0x00,
+	0x88, 0x4a, 0x21, 0x09, 0x2e, 0xf6, 0x64, 0x90, 0x40, 0x7e, 0x91, 0x04, 0xa3, 0x02, 0xa3, 0x06,
+	0x67, 0x10, 0x8c, 0x2b, 0x24, 0xc4, 0xc5, 0x92, 0x97, 0x98, 0x9b, 0x2a, 0xc1, 0x04, 0x16, 0x06,
+	0xb3, 0x85, 0x04, 0xb8, 0x98, 0x93, 0x32, 0xf3, 0x25, 0x98, 0xc1, 0x42, 0x20, 0x26, 0x48, 0x7f,
+	0x79, 0x6a, 0x52, 0x71, 0x66, 0x49, 0xaa, 0x04, 0x0b, 0x44, 0x3f, 0x94, 0xab, 0x24, 0xc5, 0x25,
+	0x81, 0x6e, 0x5b, 0x50, 0x6a, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0x2a, 0xd4, 0x25, 0xa1, 0x05, 0x29,
+	0x74, 0x74, 0x09, 0x8a, 0x6d, 0x70, 0x97, 0x38, 0x80, 0x5d, 0xe2, 0x92, 0x9a, 0x93, 0x4a, 0xa6,
+	0x4b, 0xa0, 0xa6, 0xa3, 0x98, 0x00, 0x33, 0xdd, 0x68, 0x02, 0x13, 0x17, 0xb3, 0x6f, 0x71, 0xba,
+	0x50, 0x38, 0x17, 0x2f, 0x6a, 0xb0, 0xcb, 0xe9, 0x21, 0xc7, 0x97, 0x1e, 0x7a, 0x40, 0x49, 0xa9,
+	0xe1, 0x97, 0x87, 0x59, 0x00, 0x32, 0x18, 0x35, 0x14, 0x31, 0x0d, 0x46, 0x91, 0xc7, 0x62, 0x30,
+	0xd6, 0x70, 0x01, 0x19, 0x8c, 0x1a, 0x28, 0x98, 0x06, 0xa3, 0xc8, 0x63, 0x31, 0x18, 0x6b, 0x90,
+	0x38, 0xe9, 0x9d, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13,
+	0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x08, 0xc8, 0x00,
+	0xfd, 0x0a, 0x7d, 0x78, 0xda, 0xae, 0x2c, 0x48, 0x2d, 0x4e, 0x62, 0x03, 0xa7, 0x5d, 0x63, 0x40,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0x0c, 0xed, 0xce, 0xb8, 0xf3, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -545,24 +529,6 @@ func (m *MsgCreateProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Posts) > 0 {
-		dAtA2 := make([]byte, len(m.Posts)*10)
-		var j1 int
-		for _, num := range m.Posts {
-			for num >= 1<<7 {
-				dAtA2[j1] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j1++
-			}
-			dAtA2[j1] = uint8(num)
-			j1++
-		}
-		i -= j1
-		copy(dAtA[i:], dAtA2[:j1])
-		i = encodeVarintTx(dAtA, i, uint64(j1))
-		i--
-		dAtA[i] = 0x2a
-	}
 	if len(m.Website) > 0 {
 		i -= len(m.Website)
 		copy(dAtA[i:], m.Website)
@@ -637,24 +603,6 @@ func (m *MsgUpdateProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Posts) > 0 {
-		dAtA4 := make([]byte, len(m.Posts)*10)
-		var j3 int
-		for _, num := range m.Posts {
-			for num >= 1<<7 {
-				dAtA4[j3] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j3++
-			}
-			dAtA4[j3] = uint8(num)
-			j3++
-		}
-		i -= j3
-		copy(dAtA[i:], dAtA4[:j3])
-		i = encodeVarintTx(dAtA, i, uint64(j3))
-		i--
-		dAtA[i] = 0x2a
-	}
 	if len(m.Website) > 0 {
 		i -= len(m.Website)
 		copy(dAtA[i:], m.Website)
@@ -802,13 +750,6 @@ func (m *MsgCreateProfile) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
-	if len(m.Posts) > 0 {
-		l = 0
-		for _, e := range m.Posts {
-			l += sovTx(uint64(e))
-		}
-		n += 1 + sovTx(uint64(l)) + l
-	}
 	return n
 }
 
@@ -842,13 +783,6 @@ func (m *MsgUpdateProfile) Size() (n int) {
 	l = len(m.Website)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
-	}
-	if len(m.Posts) > 0 {
-		l = 0
-		for _, e := range m.Posts {
-			l += sovTx(uint64(e))
-		}
-		n += 1 + sovTx(uint64(l)) + l
 	}
 	return n
 }
@@ -1051,82 +985,6 @@ func (m *MsgCreateProfile) Unmarshal(dAtA []byte) error {
 			}
 			m.Website = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
-			if wireType == 0 {
-				var v uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowTx
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					v |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				m.Posts = append(m.Posts, v)
-			} else if wireType == 2 {
-				var packedLen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowTx
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					packedLen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if packedLen < 0 {
-					return ErrInvalidLengthTx
-				}
-				postIndex := iNdEx + packedLen
-				if postIndex < 0 {
-					return ErrInvalidLengthTx
-				}
-				if postIndex > l {
-					return io.ErrUnexpectedEOF
-				}
-				var elementCount int
-				var count int
-				for _, integer := range dAtA[iNdEx:postIndex] {
-					if integer < 128 {
-						count++
-					}
-				}
-				elementCount = count
-				if elementCount != 0 && len(m.Posts) == 0 {
-					m.Posts = make([]uint64, 0, elementCount)
-				}
-				for iNdEx < postIndex {
-					var v uint64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowTx
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						v |= uint64(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					m.Posts = append(m.Posts, v)
-				}
-			} else {
-				return fmt.Errorf("proto: wrong wireType = %d for field Posts", wireType)
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
@@ -1355,82 +1213,6 @@ func (m *MsgUpdateProfile) Unmarshal(dAtA []byte) error {
 			}
 			m.Website = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
-			if wireType == 0 {
-				var v uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowTx
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					v |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				m.Posts = append(m.Posts, v)
-			} else if wireType == 2 {
-				var packedLen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowTx
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					packedLen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if packedLen < 0 {
-					return ErrInvalidLengthTx
-				}
-				postIndex := iNdEx + packedLen
-				if postIndex < 0 {
-					return ErrInvalidLengthTx
-				}
-				if postIndex > l {
-					return io.ErrUnexpectedEOF
-				}
-				var elementCount int
-				var count int
-				for _, integer := range dAtA[iNdEx:postIndex] {
-					if integer < 128 {
-						count++
-					}
-				}
-				elementCount = count
-				if elementCount != 0 && len(m.Posts) == 0 {
-					m.Posts = make([]uint64, 0, elementCount)
-				}
-				for iNdEx < postIndex {
-					var v uint64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowTx
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						v |= uint64(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					m.Posts = append(m.Posts, v)
-				}
-			} else {
-				return fmt.Errorf("proto: wrong wireType = %d for field Posts", wireType)
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

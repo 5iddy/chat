@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"chat/x/profile/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -25,7 +26,6 @@ func (k msgServer) CreateProfile(goCtx context.Context, msg *types.MsgCreateProf
 		Name:    msg.Name,
 		Bio:     msg.Bio,
 		Website: msg.Website,
-		Posts:   msg.Posts,
 	}
 
 	k.SetProfile(
@@ -57,7 +57,7 @@ func (k msgServer) UpdateProfile(goCtx context.Context, msg *types.MsgUpdateProf
 		Name:    msg.Name,
 		Bio:     msg.Bio,
 		Website: msg.Website,
-		Posts:   msg.Posts,
+		Posts:   valFound.Posts,
 	}
 
 	k.SetProfile(ctx, profile)

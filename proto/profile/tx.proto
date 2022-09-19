@@ -1,7 +1,7 @@
 syntax = "proto3";
 package chat.profile;
 
-import "profile/profile.proto";
+import "gogoproto/gogo.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "chat/x/profile/types";
@@ -17,10 +17,8 @@ service Msg {
 message MsgCreateProfile {
   string creator = 1;
   string name = 2;
-
   string bio = 3;
   string website = 4;
-  repeated uint64 posts = 5;
 }
 message MsgCreateProfileResponse {}
 
@@ -30,7 +28,6 @@ message MsgUpdateProfile {
 
   string bio = 3;
   string website = 4;
-  repeated uint64 posts = 5;
 }
 message MsgUpdateProfileResponse {}
 

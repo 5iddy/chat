@@ -6,11 +6,12 @@ export const protobufPackage = "chat.chat";
 export interface Letter {
   from: string;
   to: string;
-  content: string;
+  creator: string;
+  content: Uint8Array;
   contentType: string;
 }
 
-const baseLetter: object = { from: "", to: "", content: "", contentType: "" };
+const baseLetter: object = { from: "", to: "", creator: "", contentType: "" };
 
 export const Letter = {
   encode(message: Letter, writer: Writer = Writer.create()): Writer {
@@ -20,11 +21,14 @@ export const Letter = {
     if (message.to !== "") {
       writer.uint32(18).string(message.to);
     }
-    if (message.content !== "") {
-      writer.uint32(26).string(message.content);
+    if (message.creator !== "") {
+      writer.uint32(26).string(message.creator);
+    }
+    if (message.content.length !== 0) {
+      writer.uint32(34).bytes(message.content);
     }
     if (message.contentType !== "") {
-      writer.uint32(34).string(message.contentType);
+      writer.uint32(42).string(message.contentType);
     }
     return writer;
   },
@@ -43,9 +47,12 @@ export const Letter = {
           message.to = reader.string();
           break;
         case 3:
-          message.content = reader.string();
+          message.creator = reader.string();
           break;
         case 4:
+          message.content = reader.bytes();
+          break;
+        case 5:
           message.contentType = reader.string();
           break;
         default:
@@ -68,10 +75,13 @@ export const Letter = {
     } else {
       message.to = "";
     }
-    if (object.content !== undefined && object.content !== null) {
-      message.content = String(object.content);
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
     } else {
-      message.content = "";
+      message.creator = "";
+    }
+    if (object.content !== undefined && object.content !== null) {
+      message.content = bytesFromBase64(object.content);
     }
     if (object.contentType !== undefined && object.contentType !== null) {
       message.contentType = String(object.contentType);
@@ -85,7 +95,11 @@ export const Letter = {
     const obj: any = {};
     message.from !== undefined && (obj.from = message.from);
     message.to !== undefined && (obj.to = message.to);
-    message.content !== undefined && (obj.content = message.content);
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.content !== undefined &&
+      (obj.content = base64FromBytes(
+        message.content !== undefined ? message.content : new Uint8Array()
+      ));
     message.contentType !== undefined &&
       (obj.contentType = message.contentType);
     return obj;
@@ -103,10 +117,15 @@ export const Letter = {
     } else {
       message.to = "";
     }
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
     if (object.content !== undefined && object.content !== null) {
       message.content = object.content;
     } else {
-      message.content = "";
+      message.content = new Uint8Array();
     }
     if (object.contentType !== undefined && object.contentType !== null) {
       message.contentType = object.contentType;
@@ -116,6 +135,39 @@ export const Letter = {
     return message;
   },
 };
+
+declare var self: any | undefined;
+declare var window: any | undefined;
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
+  throw "Unable to locate global object";
+})();
+
+const atob: (b64: string) => string =
+  globalThis.atob ||
+  ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
+function bytesFromBase64(b64: string): Uint8Array {
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
+  }
+  return arr;
+}
+
+const btoa: (bin: string) => string =
+  globalThis.btoa ||
+  ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
+function base64FromBytes(arr: Uint8Array): string {
+  const bin: string[] = [];
+  for (let i = 0; i < arr.byteLength; ++i) {
+    bin.push(String.fromCharCode(arr[i]));
+  }
+  return btoa(bin.join(""));
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin

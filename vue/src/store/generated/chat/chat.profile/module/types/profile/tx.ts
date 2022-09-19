@@ -1,6 +1,5 @@
 /* eslint-disable */
-import { Reader, util, configure, Writer } from "protobufjs/minimal";
-import * as Long from "long";
+import { Reader, Writer } from "protobufjs/minimal";
 
 export const protobufPackage = "chat.profile";
 
@@ -9,7 +8,6 @@ export interface MsgCreateProfile {
   name: string;
   bio: string;
   website: string;
-  posts: number[];
 }
 
 export interface MsgCreateProfileResponse {}
@@ -19,7 +17,6 @@ export interface MsgUpdateProfile {
   name: string;
   bio: string;
   website: string;
-  posts: number[];
 }
 
 export interface MsgUpdateProfileResponse {}
@@ -36,7 +33,6 @@ const baseMsgCreateProfile: object = {
   name: "",
   bio: "",
   website: "",
-  posts: 0,
 };
 
 export const MsgCreateProfile = {
@@ -53,11 +49,6 @@ export const MsgCreateProfile = {
     if (message.website !== "") {
       writer.uint32(34).string(message.website);
     }
-    writer.uint32(42).fork();
-    for (const v of message.posts) {
-      writer.uint64(v);
-    }
-    writer.ldelim();
     return writer;
   },
 
@@ -65,7 +56,6 @@ export const MsgCreateProfile = {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseMsgCreateProfile } as MsgCreateProfile;
-    message.posts = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -81,16 +71,6 @@ export const MsgCreateProfile = {
         case 4:
           message.website = reader.string();
           break;
-        case 5:
-          if ((tag & 7) === 2) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.posts.push(longToNumber(reader.uint64() as Long));
-            }
-          } else {
-            message.posts.push(longToNumber(reader.uint64() as Long));
-          }
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -101,7 +81,6 @@ export const MsgCreateProfile = {
 
   fromJSON(object: any): MsgCreateProfile {
     const message = { ...baseMsgCreateProfile } as MsgCreateProfile;
-    message.posts = [];
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = String(object.creator);
     } else {
@@ -122,11 +101,6 @@ export const MsgCreateProfile = {
     } else {
       message.website = "";
     }
-    if (object.posts !== undefined && object.posts !== null) {
-      for (const e of object.posts) {
-        message.posts.push(Number(e));
-      }
-    }
     return message;
   },
 
@@ -136,17 +110,11 @@ export const MsgCreateProfile = {
     message.name !== undefined && (obj.name = message.name);
     message.bio !== undefined && (obj.bio = message.bio);
     message.website !== undefined && (obj.website = message.website);
-    if (message.posts) {
-      obj.posts = message.posts.map((e) => e);
-    } else {
-      obj.posts = [];
-    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<MsgCreateProfile>): MsgCreateProfile {
     const message = { ...baseMsgCreateProfile } as MsgCreateProfile;
-    message.posts = [];
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = object.creator;
     } else {
@@ -166,11 +134,6 @@ export const MsgCreateProfile = {
       message.website = object.website;
     } else {
       message.website = "";
-    }
-    if (object.posts !== undefined && object.posts !== null) {
-      for (const e of object.posts) {
-        message.posts.push(e);
-      }
     }
     return message;
   },
@@ -233,7 +196,6 @@ const baseMsgUpdateProfile: object = {
   name: "",
   bio: "",
   website: "",
-  posts: 0,
 };
 
 export const MsgUpdateProfile = {
@@ -250,11 +212,6 @@ export const MsgUpdateProfile = {
     if (message.website !== "") {
       writer.uint32(34).string(message.website);
     }
-    writer.uint32(42).fork();
-    for (const v of message.posts) {
-      writer.uint64(v);
-    }
-    writer.ldelim();
     return writer;
   },
 
@@ -262,7 +219,6 @@ export const MsgUpdateProfile = {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseMsgUpdateProfile } as MsgUpdateProfile;
-    message.posts = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -278,16 +234,6 @@ export const MsgUpdateProfile = {
         case 4:
           message.website = reader.string();
           break;
-        case 5:
-          if ((tag & 7) === 2) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.posts.push(longToNumber(reader.uint64() as Long));
-            }
-          } else {
-            message.posts.push(longToNumber(reader.uint64() as Long));
-          }
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -298,7 +244,6 @@ export const MsgUpdateProfile = {
 
   fromJSON(object: any): MsgUpdateProfile {
     const message = { ...baseMsgUpdateProfile } as MsgUpdateProfile;
-    message.posts = [];
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = String(object.creator);
     } else {
@@ -319,11 +264,6 @@ export const MsgUpdateProfile = {
     } else {
       message.website = "";
     }
-    if (object.posts !== undefined && object.posts !== null) {
-      for (const e of object.posts) {
-        message.posts.push(Number(e));
-      }
-    }
     return message;
   },
 
@@ -333,17 +273,11 @@ export const MsgUpdateProfile = {
     message.name !== undefined && (obj.name = message.name);
     message.bio !== undefined && (obj.bio = message.bio);
     message.website !== undefined && (obj.website = message.website);
-    if (message.posts) {
-      obj.posts = message.posts.map((e) => e);
-    } else {
-      obj.posts = [];
-    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<MsgUpdateProfile>): MsgUpdateProfile {
     const message = { ...baseMsgUpdateProfile } as MsgUpdateProfile;
-    message.posts = [];
     if (object.creator !== undefined && object.creator !== null) {
       message.creator = object.creator;
     } else {
@@ -363,11 +297,6 @@ export const MsgUpdateProfile = {
       message.website = object.website;
     } else {
       message.website = "";
-    }
-    if (object.posts !== undefined && object.posts !== null) {
-      for (const e of object.posts) {
-        message.posts.push(e);
-      }
     }
     return message;
   },
@@ -595,16 +524,6 @@ interface Rpc {
   ): Promise<Uint8Array>;
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
@@ -615,15 +534,3 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}

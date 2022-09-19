@@ -18,7 +18,6 @@ func NewMsgCreateProfile(
 	name string,
 	bio string,
 	website string,
-	posts []uint64,
 
 ) *MsgCreateProfile {
 	return &MsgCreateProfile{
@@ -26,7 +25,6 @@ func NewMsgCreateProfile(
 		Name:    name,
 		Bio:     bio,
 		Website: website,
-		Posts:   posts,
 	}
 }
 
@@ -66,7 +64,6 @@ func NewMsgUpdateProfile(
 	name string,
 	bio string,
 	website string,
-	posts []uint64,
 
 ) *MsgUpdateProfile {
 	return &MsgUpdateProfile{
@@ -74,7 +71,6 @@ func NewMsgUpdateProfile(
 		Name:    name,
 		Bio:     bio,
 		Website: website,
-		Posts:   posts,
 	}
 }
 
